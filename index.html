@@ -1,0 +1,195 @@
+<!doctype html> <meta charset="utf-8">
+<head>  
+  <title>Web4</title>
+
+  <!-- css fajl elerhetosegi utvonalanak definialasa -->
+  <link rel="stylesheet" href="css/styles.css">  
+  <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
+
+  
+
+  <!-- skriptek elerhetosegi utvonalanak definialasa -->
+  <script src="js/scripts.js"></script>
+</head>
+
+<body>  
+  <!-- adatok feldolgozasa fajlbol -->
+  <script>Initialize()</script>
+
+  <!-- oldalsav -->
+  <div class="sidenav">
+    <a href="#"> <img src="icons/share-fill.svg" class="sidebarpic"> Modellek</a>
+    <b href="#"> <img src="icons/newspaper.svg" class="sidebarpic"> Hetilap</b>
+    <b href="#"> <img src="icons/globe.svg" class="sidebarpic"> Online</b>
+    <b href="#"> <img src="icons/link-45deg.svg" class="sidebarpic"> Hetilap + Online</b>
+    <a href="#"> <img src="icons/tags.svg" class="sidebarpic"> Demo</a>
+    <b href="#"> <img src="icons/person-badge-fill.svg" class="sidebarpic"></i> Cimkezo</b>
+    <b href="#"> <img src="icons/gear.svg" class="sidebarpic"> Tanito</b>
+  </div>
+
+  <div class="main">
+    <!-- focim -->
+    <h2>címkeajánló - HETILAP</h2>
+    
+        
+
+    <table style="width:100%">
+      <tr>
+        <!-- alcim -->
+        <td><h4>Cikkék listája:</h4></td>        
+      </tr>
+
+      <tr>  
+        <!-- legordulo menu -->
+        <td style="width: 60%;"> <select class="dropdown" id="cikkek" onchange="DropdownSelection()"></select> </td>      
+        <!-- lepteto gombok -->   
+        <td>           
+          <button style="width:30px; height:30px" type="button" onclick="PaginationButtonPressed(-20)"> &#8647; </button>
+          <button style="width:30px; height:30px" type="button" onclick="PaginationButtonPressed(- 1)"> &#8592; </button>
+          <button style="width:30px; height:30px" type="button" onclick="PaginationButtonPressed(+ 1)"> &#8594; </button>
+          <button style="width:30px; height:30px" type="button" onclick="PaginationButtonPressed(+20)"> &#8649; </button>
+        </td>
+      </tr>  
+
+      <tr>  
+        <!-- csuszka --> 
+        <td> <input type="range" min="0" max="1000" class="slider" id="csuszka" oninput="UpdateRelevancy(this.value)"> </td> 
+      </tr>
+
+      <tr>
+        <!-- csuszka erteke -->
+        <td> <p id="valoszinuseg">Valószínűség:</p> </td>
+        <!-- min3 -->
+        <td> <input type="checkbox" id="min" onchange="UpdateMinimum(this.checked)" >min. 3</input> </td> 
+      </tr>
+    </table>
+
+    <!-- cikk tartalmanak tablaja -->
+    <table class="article"> 
+      <!-- cikk szovege -->  
+      <tr><th>Cikk szövege</th></tr>
+      <tr><td><p id="szoveg"> </p></td></tr> 
+    </table>
+
+    <!-- cimkek tablaja -->
+    <table class="tags" id="table"> 
+      <tr>
+        <th>Eredeti címkek</th>
+        <th>Ajánlott címkek</th>
+      </tr>
+      <tr>
+        <td id="ec"></td>
+        <td id="ac"></td>
+      </tr>
+      <tr>
+        <th>Eredeti címkek (egyeb)</th>
+        <th>Ajánlott címkek (egyeb)</th>
+      </tr>
+      <tr>
+        <td id="ece"></td>
+        <td id="ace"></td>
+      </tr>
+    </table>
+
+    <!-- statikus tabla -->
+    <table class="statikus"> 
+      <td>
+        <table class="stat">
+          <th>Hetilap</th>
+          <th></th>
+          <tr>
+            <td>cikkek: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>címke: </td>
+            <td style="font-weight: bold;">1005 db</td>
+            <td><img  src="icons/calendar2-check.svg" class="pic"></td>
+          </tr>
+          <tr>
+            <td>token: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>type: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          
+          
+          </table>
+      </td>
+      
+      <td>
+        <table class="stat">
+          <th>Hetilap</th>
+          <tr>
+            <td>cikkek: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>cimke: </td>
+            <td style="font-weight: bold;">1005 db</td>
+            <td><img  src="icons/calendar2-check.svg" class="pic"></td>
+          </tr>
+          <tr>
+            <td>token: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>type: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          </table>
+      </td>
+
+      <td>
+        <table class="stat">
+          <th>Hetilap</th>
+          <tr>
+            <td>cikkek: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>cimke: </td>
+            <td style="font-weight: bold;">1005 db</td>
+            <td><img  src="icons/calendar2-check.svg" class="pic"></td>
+          </tr>
+          <tr>
+            <td>token: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>type: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          </table>
+      </td>
+
+      <td>
+        <table class="stat">
+          <th>Hetilap</th>
+          <tr>
+            <td>cikkek: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>cimke: </td>
+            <td style="font-weight: bold;">1005 db</td>
+            <td><img  src="icons/calendar2-check.svg" class="pic"></td>
+          </tr>
+          <tr>
+            <td>token: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          <tr>
+            <td>type: </td>
+            <td style="font-weight: bold;">100 ezer</td>
+          </tr>
+          </table>
+      </td>
+    </table>
+  </div>
+</body>
+
+</html>
